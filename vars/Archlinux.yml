@@ -1,0 +1,3 @@
+---
+irq_tune_dest: '/etc/irq-tune'
+irq_tune_exec: '/usr/bin/irq-tune'
