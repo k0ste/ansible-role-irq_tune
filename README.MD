@@ -1,15 +1,15 @@
-ansible-cron-jobs
-====================
+ansible-role-irq_tune
+======================
 
 JSON configurable manual IRQ tunning via [irq-tune](//github.com/k0ste/irq-tune).
 
 Ansible versions
---------------------
+------------------
 
 Role is adapted for Ansible 2.0, should work on 1.9.
 
 Requirements for usage
------------------------------------
+-----------------------
 
 * GNU/Linux;
 * Python2 or Python3;

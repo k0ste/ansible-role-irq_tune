@@ -19,7 +19,7 @@
   copy:
     src: "/tmp/irq-tune/irq-tune.py"
     remote_src: True
-    dest: {{ hostvars[inventory_hostname]['irq_tune_exec'] }}"
+    dest: "{{ hostvars[inventory_hostname]['irq_tune_exec'] }}"
     mode: "0755"
     owner: "root"
     group: "root"
