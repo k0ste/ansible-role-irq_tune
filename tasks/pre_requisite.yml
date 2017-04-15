@@ -1,0 +1,9 @@
+---
+- name: Check irq-tune exists
+  stat:
+    path: "{{ hostvars[inventory_hostname]['irq_tune_exec'] }}"
+  register: "irq_stat"
+- name: Set irq-tune facts
+  set_fact:
+    irq_tune_auto: "{{ hostvars[inventory_hostname]['irq_tune'] | json_query('[].irq_auto[]') }}"
+    irq_tune_static: "{{ hostvars[inventory_hostname]['irq_tune'] | json_query('[].irq_static[]') }}"

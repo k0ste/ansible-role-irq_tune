@@ -1,5 +1,4 @@
-{% if irq_tune is defined %}
-{% for i in irq_tune %}
+{% for i in irq_tune_auto %}
 {% if loop.first %}{{ '[\n' }}{% endif %}
 {{ '  { \"cores\": [' + i.cores + '], \"name\": \"' + i.name + '\" }' }}
 {%- if not loop.last %}
@@ -8,4 +7,3 @@
 {{ '\n]' }}
 {% endif %}
 {% endfor %}
-{% endif %}

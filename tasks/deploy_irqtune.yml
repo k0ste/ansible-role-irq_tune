@@ -1,0 +1,29 @@
+---
+- name: Checkout irq-tune remote git repo
+  git:
+    repo: "{{ irq_tune_repo }}"
+    dest: "/tmp/irq-tune"
+  register: "irq_tune_git"
+- name: Make irq-tune directory
+  file:
+    path: "{{ hostvars[inventory_hostname]['irq_tune_dest'] }}"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  register: "irq_tune_dir"
+  when: "irq_tune_git|success"
+- name: Deploy irq-tune
+  copy:
+    src: "/tmp/irq-tune/irq-tune.py"
+    remote_src: True
+    dest: "{{ hostvars[inventory_hostname]['irq_tune_exec'] }}"
+    mode: "0755"
+    owner: "root"
+    group: "root"
+    force: "yes"
+    validate: "%s --help"
+- name: Delete irq-tune local git repo
+  file:
+    name: "/tmp/irq-tune"
+    state: "absent"
