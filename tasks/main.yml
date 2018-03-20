@@ -1,26 +1,7 @@
 ---
-- name: Add the OS specific variables
-  include_vars: "{{ hostvars[inventory_hostname]['ansible_os_family'] + '.yml' }}"
-- include: pre_requisite.yml
-- include: deploy_irqtune.yml
-  when: "irq_stat.stat.exists == False"
-- name: Deploy irq-tune json | auto
-  template:
-    src: "irq_auto.j2"
-    dest: "{{ hostvars[inventory_hostname]['irq_tune_dest'] + '/' + 'irq_auto.json' }}"
-    group: "root"
-    owner: "root"
-    mode: "0644"
-    force: "yes"
+- include_tasks: pre_requisite.yml
+- include_tasks: packages.yml
+- include_tasks: irq_tune_git.yml
   when:
-  - "vars['irq_tune_auto'] | length > 0"
-- name: Deploy irq-tune json | static
-  template:
-    src: "irq_static.j2"
-    dest: "{{ hostvars[inventory_hostname]['irq_tune_dest'] + '/' + 'irq_static.json' }}"
-    group: "root"
-    owner: "root"
-    mode: "0644"
-    force: "yes"
-  when:
-  - "vars['irq_tune_static'] | length > 0"
+  - "irq_stat.stat.exists == False"
+- include_tasks: deploy_irq_tune.yml

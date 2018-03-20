@@ -1,9 +1,14 @@
 ---
-- name: Check irq-tune exists
+- name: irq_tune | Add the OS specific variables
+  include_vars: "{{ hostvars[inventory_hostname]['ansible_os_family'] + '.yml' }}"
+- name: irq_tune | Check irq-tune exists
   stat:
     path: "{{ hostvars[inventory_hostname]['irq_tune_exec'] }}"
   register: "irq_stat"
-- name: Set irq-tune facts
+- name: irq_tune | Set irq-tune facts
   set_fact:
-    irq_tune_auto: "{{ hostvars[inventory_hostname]['irq_tune'] | json_query('[].irq_auto[]') }}"
-    irq_tune_static: "{{ hostvars[inventory_hostname]['irq_tune'] | json_query('[].irq_static[]') }}"
+    irq_tune_auto: "{{ hostvars[inventory_hostname]['irq_tune'] |
+                       json_query('[].irq_auto[]') }}"
+    irq_tune_static: "{{ hostvars[inventory_hostname]['irq_tune'] |
+                         json_query('[].irq_static[]') }}"
+    irq_tune_repo: 'https://github.com/k0ste/irq-tune.git'

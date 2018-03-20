@@ -1,0 +1,23 @@
+---
+- name: irq_tune | Deploy irq-tune json auto
+  template:
+    src: "irq_auto.j2"
+    dest: "{{ hostvars[inventory_hostname]['irq_tune_dest'] + '/' +
+              'irq_auto.json' }}"
+    group: "root"
+    owner: "root"
+    mode: "0644"
+    force: "yes"
+  when:
+  - "vars['irq_tune_auto'] | length > 0"
+- name: irq_tune | Deploy irq-tune json static
+  template:
+    src: "irq_static.j2"
+    dest: "{{ hostvars[inventory_hostname]['irq_tune_dest'] + '/' +
+              'irq_static.json' }}"
+    group: "root"
+    owner: "root"
+    mode: "0644"
+    force: "yes"
+  when:
+  - "vars['irq_tune_static'] | length > 0"

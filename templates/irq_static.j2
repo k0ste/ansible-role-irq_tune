@@ -1,9 +1,1 @@
-{% for i in irq_tune_static %}
-{% if loop.first %}{{ '[\n' }}{% endif %}
-{{ '  { \"cores\": [' + i.cores + '], \"irq\": \"' + i.irq + '\", \"name\": \"' + i.name + '\" }' }}
-{%- if not loop.last %}
-{{ ',' }}
-{% else %}
-{{ '\n]' }}
-{% endif %}
-{% endfor %}
+{{ vars['irq_tune_static'] | to_nice_json }}
