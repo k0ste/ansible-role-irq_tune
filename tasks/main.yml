@@ -1,7 +1,7 @@
 ---
-- include_tasks: pre_requisite.yml
-- include_tasks: packages.yml
+- import_tasks: pre_requisite.yml
+- import_tasks: packages.yml
 - include_tasks: irq_tune_git.yml
   when:
   - "irq_stat.stat.exists == False"
-- include_tasks: deploy_irq_tune.yml
+- import_tasks: deploy_irq_tune.yml

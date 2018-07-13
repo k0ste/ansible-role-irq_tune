@@ -3,7 +3,7 @@
   template:
     src: "irq_auto.j2"
     dest: "{{ hostvars[inventory_hostname]['irq_tune_dest'] + '/' +
-              'irq_auto.json' }}"
+      'irq_auto.json' }}"
     group: "root"
     owner: "root"
     mode: "0644"
@@ -14,7 +14,7 @@
   template:
     src: "irq_static.j2"
     dest: "{{ hostvars[inventory_hostname]['irq_tune_dest'] + '/' +
-              'irq_static.json' }}"
+      'irq_static.json' }}"
     group: "root"
     owner: "root"
     mode: "0644"

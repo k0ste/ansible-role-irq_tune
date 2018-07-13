@@ -1,6 +1,7 @@
 ---
 - name: irq_tune | Add the OS specific variables
-  include_vars: "{{ hostvars[inventory_hostname]['ansible_os_family'] + '.yml' }}"
+  include_vars: "{{
+    hostvars[inventory_hostname]['ansible_os_family'] + '.yml' }}"
 - name: irq_tune | Check irq-tune exists
   stat:
     path: "{{ hostvars[inventory_hostname]['irq_tune_exec'] }}"

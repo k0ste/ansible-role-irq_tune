@@ -5,11 +5,7 @@ JSON configurable manual IRQ tunning via
 
 ## Requirements
 
-* Ansible 2.4;
-* jmespath;
-* GNU/Linux;
-* Python2 or Python3;
-* git;
+* Ansible 2.5+;
 
 ## Example configuration
 
